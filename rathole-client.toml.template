@@ -1,0 +1,14 @@
+[client]
+remote_addr = "${RATHOLE_REMOTE}"
+
+[client.transport]
+type = "noise"
+
+[client.transport.noise]
+pattern = "Noise_KK_25519_ChaChaPoly_BLAKE2s"
+local_private_key = "${RATHOLE_LOCAL_PRIVKEY}"
+remote_public_key = "${RATHOLE_REMOTE_PUBKEY}"
+
+[client.services.${RATHOLE_SERVICE}]
+token = "${RATHOLE_SERVICE_TOKEN}"
+local_addr = "127.0.0.1:${VLLM_PORT}"
