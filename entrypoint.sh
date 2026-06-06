@@ -8,9 +8,12 @@ set -uo pipefail
 : "${RATHOLE_SERVICE:?RATHOLE_SERVICE must be set}"
 : "${RATHOLE_SERVICE_TOKEN:?RATHOLE_SERVICE_TOKEN must be set}"
 
-RATHOLE_CONFIG=/etc/rathole/client.toml
+RATHOLE_TEMPLATE="${RATHOLE_TEMPLATE:-/opt/rathole/client.toml.template}"
+RATHOLE_RUNTIME_DIR="${RATHOLE_RUNTIME_DIR:-${TMPDIR:-/tmp}/rathole}"
+mkdir -p "$RATHOLE_RUNTIME_DIR"
+RATHOLE_CONFIG="$RATHOLE_RUNTIME_DIR/client.toml"
 export VLLM_PORT RATHOLE_REMOTE RATHOLE_LOCAL_PRIVKEY RATHOLE_REMOTE_PUBKEY RATHOLE_SERVICE RATHOLE_SERVICE_TOKEN
-envsubst < /etc/rathole/client.toml.template > "$RATHOLE_CONFIG"
+envsubst < "$RATHOLE_TEMPLATE" > "$RATHOLE_CONFIG"
 
 rathole_supervisor() {
   while true; do

@@ -15,6 +15,7 @@ optional:
 - `VLLM_PORT` (default `8000`)
 - `RATHOLE_SERVICE` (default `vllm`)
 - `VLLM_ARGS` — extra args for `vllm serve`, shell-style quoting supported
+- `RATHOLE_RUNTIME_DIR` — where the rendered rathole config is written (default `${TMPDIR:-/tmp}/rathole`); only needs changing if `/tmp` isn't writable
 
 ## run
 

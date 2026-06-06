@@ -20,8 +20,7 @@ RUN apt-get update \
 COPY --from=rathole-build /src/target/release/rathole /usr/local/bin/rathole
 RUN chmod +x /usr/local/bin/rathole && /usr/local/bin/rathole --help >/dev/null
 
-RUN mkdir -p /etc/rathole
-COPY rathole-client.toml.template /etc/rathole/client.toml.template
+COPY rathole-client.toml.template /opt/rathole/client.toml.template
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
