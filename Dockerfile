@@ -25,8 +25,7 @@ COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 ENV VLLM_PORT=8000 \
-    RATHOLE_SERVICE=vllm \
-    VLLM_ARGS=""
+    RATHOLE_SERVICE=vllm
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD []

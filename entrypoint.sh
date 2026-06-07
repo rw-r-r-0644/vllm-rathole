@@ -28,11 +28,7 @@ rathole_supervisor() {
 rathole_supervisor &
 RATHOLE_PID=$!
 
-# Word-split VLLM_ARGS with shell-quoting support so operators can pass
-# whitespace-bearing values via quoting in the env var.
-eval "set -- ${VLLM_ARGS:-}"
-
-vllm serve --host 127.0.0.1 --port "${VLLM_PORT}" "$@" &
+vllm serve --host 127.0.0.1 --port "${VLLM_PORT}" ${VLLM_CONFIG:+--config "$VLLM_CONFIG"} &
 VLLM_PID=$!
 
 shutdown() {
