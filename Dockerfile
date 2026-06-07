@@ -24,8 +24,7 @@ COPY rathole-client.toml.template /opt/rathole/client.toml.template
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
-ENV VLLM_PORT=8000 \
-    RATHOLE_SERVICE=vllm
+ENV VLLM_PORT=8000
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD []
